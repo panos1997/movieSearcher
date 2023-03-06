@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 export const urls = {
-    serverUrl: 'http://localhost:3010',
+    serverUrl: 'https://moviesearcher-server.onrender.com',
     // serverUrl: 'https://ql-movie-api.herokuapp.com/',
     imagesBaseUrl: 'https://image.tmdb.org/t/p/original'
 };
