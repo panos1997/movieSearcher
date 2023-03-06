@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from './movieCard';
 import PropTypes from 'prop-types';
 
-const MovieCardsList = ({ movies, typedValue }) => {
+const MovieCardsList = ({ movies, typedValue, setLoader }) => {
     // show in the list only the movies that have a title and a date
     return(
         movies?.length
@@ -13,6 +13,7 @@ const MovieCardsList = ({ movies, typedValue }) => {
                             <MovieCard
                                 movieInfo={movieInfo} 
                                 typedValue={typedValue}
+                                setLoader={setLoader}
                             />
                         </div>
                     ))
@@ -24,7 +25,8 @@ const MovieCardsList = ({ movies, typedValue }) => {
 
 MovieCardsList.propTypes = {
     movies: PropTypes.array,
-    typedValue: PropTypes.string
+    typedValue: PropTypes.string,
+    setLoader: PropTypes.func
 };
 
 export default MovieCardsList;

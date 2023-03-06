@@ -9,7 +9,7 @@ import Rating from './rating';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const MovieCard = ({ movieInfo, typedValue }) => {
+const MovieCard = ({ movieInfo, typedValue, setLoader }) => {
     const popupStore = useSelector(state => state.popup);
     const dispatch = useDispatch();
 
@@ -17,8 +17,12 @@ const MovieCard = ({ movieInfo, typedValue }) => {
     // new request is made ONLY when user clicks the movie card (so I avoid making the getMovieDetails request for all of the movies when they are retrieved, it would make the user wait way more)
     const onMovieCardClick = async () => {
         if(movieInfo.id) {
+            setLoader(true);
+            
             // retrieve the cast, genres, runtime, productionCompanies data
             const { cast, genres, runtime, productionCompanies } = await service.getMovieDetails(movieInfo.id);
+
+            setLoader(false);
 
             // show the popup with the original movie details, appended with the detailed data that I just retrieved
             if(!popupStore.showPopup) {
@@ -83,7 +87,8 @@ const MovieCard = ({ movieInfo, typedValue }) => {
 
 MovieCard.propTypes = {
     movieInfo: PropTypes.shape({}),
-    typedValue: PropTypes.string
+    typedValue: PropTypes.string,
+    setLoader: PropTypes.func
 };
 
 export default MovieCard;

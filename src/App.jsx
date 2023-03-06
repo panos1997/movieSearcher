@@ -25,19 +25,21 @@ const App = () => {
       />
 
       {
-        loader 
+        (!loader && typedValue?.length && !movies?.length)
+          ? <MessageWithIcon 
+              icon={<FontAwesomeIcon icon={faFaceSadTear} className='margin-r-8' />}
+              text='Sorry, there are no results for the requested title'
+          />
+          : <MovieCardsList
+              movies={movies} 
+              typedValue={typedValue}
+              setLoader={setLoader}
+          />
+      }
+      {
+        loader
           ? <Loader />
-          : (
-              (typedValue?.length && !movies?.length)
-                ? <MessageWithIcon 
-                    icon={<FontAwesomeIcon icon={faFaceSadTear} className='margin-r-8' />}
-                    text='Sorry, there are no results for the requested title'
-                />
-                : <MovieCardsList
-                    movies={movies} 
-                    typedValue={typedValue}
-                />
-              )
+          : null
       }
       
       {/* General popup takes it's content from a redux store, so the same popup can be used where needed with different content only by updating the redux variables of the popup store */}
