@@ -36,7 +36,7 @@ const MovieDetailsPopup = ({ movieInfo }) => {
             <div className='infoSection'>
                 <img
                     className='movieCard-poster smallPoster'
-                    src={ movieInfo.poster_path ? `${urls.imagesBaseUrl}${movieInfo.poster_path}` : globalUtilities.noImageAvailablePlaceholderUrl}
+                    src={ movieInfo.poster_path ? `${urls.imagesBaseUrl}${movieInfo.poster_path}` : globalUtilities.getNoAvailablePosterUrl()}
                     alt=''
                 />
                 <div>
